@@ -1,0 +1,77 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+.app {
+  background: #fff;
+  padding: 20px;
+  width: 320px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+}
+
+.input-box {
+  display: flex;
+  gap: 6px;
+}
+
+#todoInput {
+  flex: 1;
+  padding: 8px;
+}
+
+#addBtn {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  border-bottom: 1px solid #ddd;
+   cursor: url(https://assets.codepen.io/9632/cursor-hand.svg), auto;
+   border-radius: 20px;
+   text-transform: capitalize;
+}
+li p{
+  padding-left: 10px;
+}
+li span{
+  cursor: pointer;
+}
+li span:hover{
+  scale: 1.3;
+   transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+.delete-btn {
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.done {
+  text-decoration: line-through;
+  color: gray;
+}
