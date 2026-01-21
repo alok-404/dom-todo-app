@@ -13,7 +13,10 @@ btn.addEventListener("click",function(){
     text: newTodo,
     completed: false
   }
-  todoObj.push(allTodos)
+  allTodos.push(todoObj)
+  localStorage.setItem("todos", JSON.stringify(allTodos));
+
+createTodoUI(todoObj);
 
   input.value = ""
 })
