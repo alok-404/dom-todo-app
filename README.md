@@ -1,28 +1,34 @@
-# DOM Todo App
+# Todo App (Vanilla JavaScript)
 
-A todo application built using vanilla JavaScript and DOM manipulation.
+A simple Todo application built using **HTML, CSS, and JavaScript** to practice core **DOM manipulation**, **event handling**, **localStorage**, and **filtering logic**.
 
-## Features
-- Add new todos
-- Delete todos
-- Mark todos as completed
-- Edit existing todos
-- Search / filter todos
-- Persist data using localStorage
+## 🚀 Features
+- Add, delete, and edit todos
+- Mark todos as completed / pending
+- Persistent data using localStorage
+- Search todos in real time
+- Filter todos (All / Completed / Pending)
+- Basic input validation
 
-## Tech Stack
+## 🧠 What I Learned
+- DOM selection and manipulation
+- Event listeners and event flow
+- Using arrays as a source of truth
+- Filtering and rendering dynamic lists
+- localStorage CRUD operations
+- Refactoring repetitive UI logic
+
+## ⚠️ Note
+This project is built as a **learning milestone**, not a production-ready app.  
+The code will be refactored and improved as my understanding grows.
+
+## 📌 Tech Stack
 - HTML
 - CSS
-- JavaScript (DOM)
+- JavaScript (Vanilla)
 
-## What I Learned
-- Managing application state using JavaScript objects and arrays
-- Updating UI dynamically with DOM APIs
-- Implementing edit functionality using shared state
-- Using localStorage with JSON for persistence
-- Handling multiple event listeners and UI re-rendering
+## 📅 Progress
+Day 1–3: Core functionality + validation + filters  
+Further improvements planned (refactor, edge cases, better UX)
 
-## Known Improvements
-- Clean up edit logic to avoid duplicate event listeners
-- Improve ID generation
-- Refactor rendering logic for better performance
+---
