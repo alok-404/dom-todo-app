@@ -19,10 +19,27 @@
 <button id="addBtn">Add</button>
 </div>
 
+<!-- validation error -->
+<p class="errorLine">
+     Todo must be at least 3 characters long
+</p>
+
+<p class="EmptyErrorLine">
+     Todo can't be empty
+</p>
+
 
 <!-- Search Todo (for future filter logic) -->
 <div class="input-box">
 <input type="text" id="searchInput" placeholder="Search todos..." />
+</div>
+
+
+<!-- Filter buttons -->
+<div class="filter-box">
+  <button id="allBtn" class="filter-btn active">All</button>
+  <button id="completedBtn" class="filter-btn">Completed</button>
+  <button id="pendingBtn" class="filter-btn">Pending</button>
 </div>
 
 
