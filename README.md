@@ -1,34 +1,60 @@
 # Todo App (Vanilla JavaScript)
 
-A simple Todo application built using **HTML, CSS, and JavaScript** to practice core **DOM manipulation**, **event handling**, **localStorage**, and **filtering logic**.
+A Todo application built using **HTML, CSS, and Vanilla JavaScript** as a learning-focused project to strengthen my understanding of **DOM manipulation, application flow, and state management**.
+
+This project is intentionally kept simple in UI but strong in logic.
+
+---
 
 ## 🚀 Features
-- Add, delete, and edit todos
+- Add new todos with validation
+- Edit existing todos
+- Delete todos
 - Mark todos as completed / pending
-- Persistent data using localStorage
 - Search todos in real time
 - Filter todos (All / Completed / Pending)
-- Basic input validation
+- Persistent data using localStorage
 
-## 🧠 What I Learned
-- DOM selection and manipulation
-- Event listeners and event flow
-- Using arrays as a source of truth
-- Filtering and rendering dynamic lists
-- localStorage CRUD operations
-- Refactoring repetitive UI logic
+---
 
-## ⚠️ Note
-This project is built as a **learning milestone**, not a production-ready app.  
-The code will be refactored and improved as my understanding grows.
+## 🧠 What I’m Actually Learning (Honest)
+- How data (`allTodos`) drives the entire UI
+- How multiple event listeners work together in a larger file
+- Why rendering logic must be centralized
+- How confusion increases as app size grows — and how to deal with it
+- Debugging and understanding **flow**, not just writing code
 
-## 📌 Tech Stack
+---
+
+## ⚠️ Current Challenge (Important)
+- I can build **small features confidently**
+- As the app grows, understanding the **full flow at once** becomes harder
+- I’m actively working on:
+  - Reading my own code line-by-line
+  - Refactoring instead of rewriting blindly
+  - Reducing confusion in larger files
+
+This project reflects **real learning**, not copy-paste perfection.
+
+---
+
+## 🛠 Tech Stack
 - HTML
 - CSS
 - JavaScript (Vanilla)
-
-## 📅 Progress
-Day 1–3: Core functionality + validation + filters  
-Further improvements planned (refactor, edge cases, better UX)
+- localStorage
 
 ---
+
+## 📅 Progress Log
+- **Day 1–2:** Core Todo logic + DOM basics  
+- **Day 3:** Validation, filters, search, edit functionality  
+- **Day 4:** Code understanding, flow clarity, and refactoring mindset  
+
+Further improvements will focus on cleaner structure and better flow control.
+
+---
+
+## 📌 Note
+This is a learning milestone project.  
+Code quality and structure will improve as I progress.
