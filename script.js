@@ -1,59 +1,54 @@
-let input = document.querySelector(".input-box #todoInput");
-let btn = document.querySelector("#addBtn");
-let todoList = document.querySelector("#todoList");
-let ul = document.querySelector(".app #todoList");
-let editbox = document.querySelector(".editbox");
-let editInput = document.querySelector("#editInput");
-let OKBtn = document.querySelector("#OKBtn");
-let errorLine = document.querySelector(".errorLine");
-let EmptyErrorLine = document.querySelector(".EmptyErrorLine");
-
-let allBtn = document.querySelector("#allBtn");
-let completedBtn = document.querySelector("#completedBtn");
-let pendingBtn = document.querySelector("#pendingBtn");
-
-let searchInput = document.querySelector("#searchInput");
-let CloseBtn = document.querySelector("#CloseBtn");
-
-let editingId = null;
+const inputBox = document.querySelector("#input-box");
+const todoInput = document.querySelector("#todoInput");
+const addBtn = document.querySelector("#addBtn");
+const errorLine = document.querySelector(".errorLine");
+const EmptyErrorLine = document.querySelector(".EmptyErrorLine");
+const todoList = document.querySelector("#todoList");
+const editBox = document.querySelector(".editbox");
+const editInput = document.querySelector("#editInput");
+const CloseBtn = document.querySelector("#CloseBtn");
+const searchInput = document.querySelector("#searchInput");
 
 let allTodos = JSON.parse(localStorage.getItem("todos")) || [];
 
-/* ---------- ADD TODO ---------- */
-btn.addEventListener("click", function () {
-  let newTodo = input.value.trim();
+renderTodos(allTodos);
 
-  if (newTodo === "") {
+let editingTextId = null;
+function setItemsInLocalStorage() {
+  localStorage.setItem("todos", JSON.stringify(allTodos));
+}
+
+addBtn.addEventListener("click", function () {
+  let todo = todoInput.value.trim();
+
+  if (todo === "") {
     EmptyErrorLine.style.display = "block";
     errorLine.style.display = "none";
     return;
-  } else if (newTodo.length <= 3) {
-    EmptyErrorLine.style.display = "none";
+  } else if (todo.length <= 3) {
     errorLine.style.display = "block";
+    EmptyErrorLine.style.display = "none";
     return;
   }
 
-  EmptyErrorLine.style.display = "none";
   errorLine.style.display = "none";
+  EmptyErrorLine.style.display = "none";
 
   let todoObj = {
-    id: Math.random().toFixed(5),
-    text: newTodo,
+    id: Date.now(),
+    text: todo,
     completed: false,
   };
 
   allTodos.push(todoObj);
-  localStorage.setItem("todos", JSON.stringify(allTodos));
-  renderTodos(allTodos);
+  setItemsInLocalStorage();
 
-  input.value = "";
+  createTodoElement(todoObj);
+  todoInput.value = "";
 });
 
-//initial reader
-renderTodos(allTodos);
+function createTodoElement(todoObj) {
 
-//create todo
-function createTodoUI(todoObj) {
   let list = document.createElement("li");
 
   if (todoObj.completed) {
@@ -78,14 +73,15 @@ function createTodoUI(todoObj) {
   dltbtn.classList.add("delete-btn");
   todoDiv.appendChild(dltbtn);
 
-  ul.appendChild(list);
+  todoList.appendChild(list);
 
-  // delete task
+  //for deleting todo
+
   dltbtn.addEventListener("click", function (e) {
     e.stopPropagation();
-    allTodos = allTodos.filter((t) => t !== todoObj);
-    localStorage.setItem("todos", JSON.stringify(allTodos));
-    renderTodos(allTodos);
+    allTodos = allTodos.filter((t) => t.id !== todoObj.id);
+    setItemsInLocalStorage();
+    list.remove();
   });
 
   // toggle complete
@@ -95,49 +91,63 @@ function createTodoUI(todoObj) {
     renderTodos(allTodos);
   });
 
+  //edit button
   editBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-    editbox.style.display = "block";
-    editingId = todoObj.id;
+    e.stopImmediatePropagation()
+    editingTextId = todoObj.id;
     editInput.value = todoObj.text;
+    editBox.style.display = "block";
+    // renderTodos(allTodos);
   });
+
+
 }
-
-//save
 OKBtn.addEventListener("click", function () {
-  if (editingId === null) return;
+  let editTodo = editInput.value.trim();
+  if (editTodo === "" || editTodo.length < 3) {
+    alert("Todo must be at least 3 characters long");
+    return;
+  }
 
-  let editedtodo = editInput.value.trim();
-  let findTodo = allTodos.find((t) => t.id === editingId);
-  findTodo.text = editedtodo;
+  let targetedTodo = allTodos.find((t) => t.id === editingTextId);
 
-  localStorage.setItem("todos", JSON.stringify(allTodos));
+  if (!targetedTodo) {
+    console.error("Edit target not found. State is corrupted.");
+    return;
+  }
+
+  targetedTodo.text = editTodo;
+  setItemsInLocalStorage();
+
   renderTodos(allTodos);
 
-  editbox.style.display = "none";
-  editingId = null;
+  setActive(allBtn);
+  currentFilter = "all";
+
+  editBox.style.display = "none";
+  editingTextId = null;
 });
 
-//close edit
-CloseBtn.addEventListener("click", function () {
-  editbox.style.display = "none";
-  editingId = null;
-});
-//search
+  //close edit
+  CloseBtn.addEventListener("click", function () {
+    editBox.style.display = "none";
+    editingTextId = null;
+  });
+
+//filterTodo
 searchInput.addEventListener("input", function () {
   let query = searchInput.value.toLowerCase().trim();
-  let filtered = allTodos.filter((t) =>
-    t.text.toLowerCase().includes(query)
-  );
+
+  let filtered = allTodos.filter((t) => t.text.toLowerCase().includes(query));
+
   renderTodos(filtered);
 });
 
-/*  FILTER btn*/
-
+//render todos
 function renderTodos(todosArray) {
-  ul.innerHTML = "";
-  todosArray.forEach((todoObj) => {
-    createTodoUI(todoObj);
+  todoList.innerHTML = "";
+  todosArray.forEach((t) => {
+    createTodoElement(t);
   });
 }
 
